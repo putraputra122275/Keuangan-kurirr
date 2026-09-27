@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Keuangan Pengusaha</title>
-<!-- Supabase dimuat secara asinkron oleh aplikasi setelah tampilan awal muncul. -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f4f6f8;font-family:Arial,sans-serif;color:#222}.app{max-width:520px;min-height:100vh;margin:auto;background:#fff}.header{background:#0d6efd;color:#fff;text-align:center;padding:18px}.header h1{margin:0 0 5px;font-size:24px}.header p{margin:0;font-size:13px}.page{padding:10px}.card{border:1px solid #e1e5e9;border-radius:12px;padding:11px;margin-bottom:8px;box-shadow:0 2px 7px #0001}h2,h3{margin-top:0}label{display:block;font-weight:700;margin:8px 0 4px}input{width:100%;padding:10px;border:1px solid #ccd2d8;border-radius:10px;background:#fff;font-size:16px}.btn{width:100%;border:0;border-radius:9px;padding:10px;margin-top:6px;background:#0d6efd;color:#fff;font-weight:700}.success{background:#198754}.danger{background:#dc3545}.secondary{background:#6c757d}.light{background:#eef3f8;color:#222}.small{width:auto;margin:0;padding:7px 9px;font-size:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.options{display:grid;gap:5px}.option{width:100%;padding:9px;border:1px solid #d5dbe1;border-radius:10px;background:#fff;text-align:left;font-weight:700}.muted{font-size:13px;color:#777}.notice{padding:11px;border-radius:10px;background:#fff3cd;color:#664d03;font-size:13px}.ok{padding:11px;border-radius:10px;background:#d1e7dd;color:#0f5132;font-size:13px}.balance{text-align:center;font-size:27px;font-weight:800;padding:12px}.balance small{display:block;font-size:13px;color:#666;font-weight:400}.back{border:0;background:none;color:#0d6efd;font-weight:700;padding:0;margin-bottom:12px}.item{display:flex;justify-content:space-between;gap:6px;align-items:center;border:1px solid #e1e5e9;border-radius:8px;padding:6px;margin-top:4px}.itemname{font-weight:700;overflow-wrap:anywhere}.history{border-bottom:1px solid #e5e5e5;padding:10px 0}.history:last-child{border:0}.historytop{display:flex;justify-content:space-between;gap:8px}.in{color:#198754;font-weight:800}.out{color:#dc3545;font-weight:800}.empty{text-align:center;color:#777;padding:18px}.row{display:flex;gap:6px}.row>*{flex:1}.footer{text-align:center;color:#888;font-size:12px;padding:20px}@media(max-width:360px){.grid{grid-template-columns:1fr}}
 .quick-list{display:grid;gap:4px;margin-top:8px}.quick-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px;align-items:center;border:1px solid #e1e5e9;border-radius:8px;padding:5px 6px}.quick-info{min-width:0}.quick-info .itemname{font-size:14px;line-height:1.2}.quick-price{font-size:12px;color:#666;margin-top:2px}.quick-actions{display:flex;gap:4px}.quick-actions .btn{flex:0 0 auto}.quick-actions .small{min-width:58px}
@@ -18,15 +18,7 @@
 <p>Catat pemasukan, pengeluaran dan saldo usaha</p>
 </header>
 
-<div id="app">
-<main class="page">
-<div class="card">
-<h2>JENIS PENGHASILAN</h2>
-<p class="muted">Pilih sumber/jenis usaha yang menjadi sumber pemasukan.</p>
-<button class="btn" id="startBusinessButton" type="button">JENIS USAHA</button>
-</div>
-</main>
-</div>
+<div id="app"></div>
 
 <div class="footer">Keuangan Pengusaha</div>
 </div>
@@ -231,52 +223,6 @@ lng:null
 };
 
 const A=document.getElementById('app');
-
-/* =========================================================
-   PEMUATAN SUPABASE SECARA ASINKRON
-   ========================================================= */
-function loadSupabase(){
-  return new Promise(resolve=>{
-    if(window.supabase&&typeof window.supabase.createClient==='function'){
-      try{
-        sb=window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_PUBLISHABLE_KEY
-        );
-      }catch(_){
-        sb=null;
-      }
-      resolve(sb);
-      return;
-    }
-
-    const sc=document.createElement('script');
-    sc.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-    sc.async=true;
-
-    sc.onload=()=>{
-      try{
-        if(window.supabase&&typeof window.supabase.createClient==='function'){
-          sb=window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_PUBLISHABLE_KEY
-          );
-        }
-      }catch(_){
-        sb=null;
-      }
-      resolve(sb);
-    };
-
-    sc.onerror=()=>{
-      sb=null;
-      resolve(null);
-    };
-
-    document.head.appendChild(sc);
-  });
-}
-
 
 const e=x=>String(x??'').replace(/[&<>\"']/g,m=>({
 '&':'&amp;',
@@ -640,26 +586,9 @@ async function init(){
     render();
   }
 
-  // Supabase dijalankan setelah tampilan aplikasi sudah muncul.
-  // Jika CDN/API gagal atau lambat, aplikasi tetap bisa digunakan.
+  // Supabase dijalankan di belakang layar.
+  // Jika gagal atau lambat, tampilan aplikasi tetap berjalan.
   try{
-
-    const supabasePromise=loadSupabase();
-
-    const supabaseTimeout=new Promise(
-      resolve=>setTimeout(
-        ()=>resolve(null),
-        8000
-      )
-    );
-
-    await Promise.race([
-      supabasePromise,
-      supabaseTimeout
-    ]);
-
-    if(!sb)
-      return;
 
     const authPromise=getAuthUser();
 
@@ -751,16 +680,11 @@ function render(){
       '<main class="page">'+
       '<div class="card empty">Memuat...</div>'+
       '</main>';
-
-  const startButton=document.getElementById('startBusinessButton');
-  if(startButton){
-    startButton.addEventListener('click',function(){
-      S.screen='cat';
-      render();
-    },{once:true});
-  }
 }
 
+
+window.S=S;
+window.render=render;
 
 /* =========================================================
    HALAMAN AWAL
@@ -773,9 +697,17 @@ function start(){
   '<div class="card">'+
   '<h2>JENIS PENGHASILAN</h2>'+
   '<p class="muted">Pilih sumber/jenis usaha yang menjadi sumber pemasukan.</p>'+
-  '<button class="btn" id="startBusinessButton" type="button">JENIS USAHA</button>'+
+  '<button class="btn" id="btnJenisUsaha">JENIS USAHA</button>'+
   '</div>'+
   '</main>';
+
+  const btn=document.getElementById('btnJenisUsaha');
+  if(btn){
+    btn.addEventListener('click',function(){
+      S.screen='cat';
+      render();
+    });
+  }
 }
 
 
@@ -2130,4 +2062,4 @@ try{
 
 </script>
 </body>
-  </html>
+</html>
