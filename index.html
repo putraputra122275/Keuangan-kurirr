@@ -222,6 +222,9 @@ lng:null
 }
 };
 
+// Pastikan state dapat diakses oleh semua tombol onclick di seluruh aplikasi.
+window.S=S;
+
 const A=document.getElementById('app');
 
 const e=x=>String(x??'').replace(/[&<>\"']/g,m=>({
@@ -682,9 +685,9 @@ function render(){
       '</main>';
 }
 
-
-window.S=S;
+// Fungsi render juga dibuat global agar tombol dapat memanggilnya dengan aman.
 window.render=render;
+
 
 /* =========================================================
    HALAMAN AWAL
@@ -697,17 +700,9 @@ function start(){
   '<div class="card">'+
   '<h2>JENIS PENGHASILAN</h2>'+
   '<p class="muted">Pilih sumber/jenis usaha yang menjadi sumber pemasukan.</p>'+
-  '<button class="btn" id="btnJenisUsaha">JENIS USAHA</button>'+
+  '<button class="btn" onclick="S.screen=\'cat\';render()">JENIS USAHA</button>'+
   '</div>'+
   '</main>';
-
-  const btn=document.getElementById('btnJenisUsaha');
-  if(btn){
-    btn.addEventListener('click',function(){
-      S.screen='cat';
-      render();
-    });
-  }
 }
 
 
