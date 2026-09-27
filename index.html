@@ -6,13 +6,58 @@
 <title>Keuangan Pengusaha</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f4f6f8;font-family:Arial,sans-serif;color:#222}.app{max-width:520px;min-height:100vh;margin:auto;background:#fff}.header{background:#0d6efd;color:#fff;text-align:center;padding:18px}.header h1{margin:0 0 5px;font-size:24px}.header p{margin:0;font-size:13px}.page{padding:10px}.card{border:1px solid #e1e5e9;border-radius:12px;padding:11px;margin-bottom:8px;box-shadow:0 2px 7px #0001}h2,h3{margin-top:0}label{display:block;font-weight:700;margin:8px 0 4px}input{width:100%;padding:10px;border:1px solid #ccd2d8;border-radius:10px;background:#fff;font-size:16px}.btn{width:100%;border:0;border-radius:9px;padding:10px;margin-top:6px;background:#0d6efd;color:#fff;font-weight:700}.success{background:#198754}.danger{background:#dc3545}.secondary{background:#6c757d}.light{background:#eef3f8;color:#222}.small{width:auto;margin:0;padding:7px 9px;font-size:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.options{display:grid;gap:5px}.option{width:100%;padding:9px;border:1px solid #d5dbe1;border-radius:10px;background:#fff;text-align:left;font-weight:700}.muted{font-size:13px;color:#777}.notice{padding:11px;border-radius:10px;background:#fff3cd;color:#664d03;font-size:13px}.ok{padding:11px;border-radius:10px;background:#d1e7dd;color:#0f5132;font-size:13px}.balance{text-align:center;font-size:27px;font-weight:800;padding:12px}.balance small{display:block;font-size:13px;color:#666;font-weight:400}.back{border:0;background:none;color:#0d6efd;font-weight:700;padding:0;margin-bottom:12px}.item{display:flex;justify-content:space-between;gap:6px;align-items:center;border:1px solid #e1e5e9;border-radius:8px;padding:6px;margin-top:4px}.itemname{font-weight:700;overflow-wrap:anywhere}.history{border-bottom:1px solid #e5e5e5;padding:10px 0}.history:last-child{border:0}.historytop{display:flex;justify-content:space-between;gap:8px}.in{color:#198754;font-weight:800}.out{color:#dc3545;font-weight:800}.empty{text-align:center;color:#777;padding:18px}.row{display:flex;gap:6px}.row>*{flex:1}.footer{text-align:center;color:#888;font-size:12px;padding:20px}@media(max-width:360px){.grid{grid-template-columns:1fr}}
-.quick-list{display:grid;gap:4px;margin-top:8px}.quick-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px;align-items:center;border:1px solid #e1e5e9;border-radius:8px;padding:5px 6px}.quick-info{min-width:0}.quick-info .itemname{font-size:14px;line-height:1.2}.quick-price{font-size:12px;color:#666;margin-top:2px}.quick-actions{display:flex;gap:4px}.quick-actions .btn{flex:0 0 auto}.quick-actions .small{min-width:58px}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f8;font-family:Arial,sans-serif;color:#222}
+.app{max-width:520px;min-height:100vh;margin:auto;background:#fff}
+.header{background:#0d6efd;color:#fff;text-align:center;padding:18px}
+.header h1{margin:0 0 5px;font-size:24px}
+.header p{margin:0;font-size:13px}
+.page{padding:10px}
+.card{border:1px solid #e1e5e9;border-radius:12px;padding:11px;margin-bottom:8px;box-shadow:0 2px 7px #0001}
+h2,h3{margin-top:0}
+label{display:block;font-weight:700;margin:8px 0 4px}
+input{width:100%;padding:10px;border:1px solid #ccd2d8;border-radius:10px;background:#fff;font-size:16px}
+.btn{width:100%;border:0;border-radius:9px;padding:10px;margin-top:6px;background:#0d6efd;color:#fff;font-weight:700}
+.success{background:#198754}
+.danger{background:#dc3545}
+.secondary{background:#6c757d}
+.light{background:#eef3f8;color:#222}
+.small{width:auto;margin:0;padding:7px 9px;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.options{display:grid;gap:5px}
+.option{width:100%;padding:9px;border:1px solid #d5dbe1;border-radius:10px;background:#fff;text-align:left;font-weight:700}
+.muted{font-size:13px;color:#777}
+.notice{padding:11px;border-radius:10px;background:#fff3cd;color:#664d03;font-size:13px}
+.ok{padding:11px;border-radius:10px;background:#d1e7dd;color:#0f5132;font-size:13px}
+.balance{text-align:center;font-size:27px;font-weight:800;padding:12px}
+.balance small{display:block;font-size:13px;color:#666;font-weight:400}
+.back{border:0;background:none;color:#0d6efd;font-weight:700;padding:0;margin-bottom:12px}
+.item{display:flex;justify-content:space-between;gap:6px;align-items:center;border:1px solid #e1e5e9;border-radius:8px;padding:6px;margin-top:4px}
+.itemname{font-weight:700;overflow-wrap:anywhere}
+.history{border-bottom:1px solid #e5e5e5;padding:10px 0}
+.history:last-child{border:0}
+.historytop{display:flex;justify-content:space-between;gap:8px}
+.in{color:#198754;font-weight:800}
+.out{color:#dc3545;font-weight:800}
+.empty{text-align:center;color:#777;padding:18px}
+.row{display:flex;gap:6px}
+.row>*{flex:1}
+.footer{text-align:center;color:#888;font-size:12px;padding:20px}
+@media(max-width:360px){.grid{grid-template-columns:1fr}}
+.quick-list{display:grid;gap:4px;margin-top:8px}
+.quick-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px;align-items:center;border:1px solid #e1e5e9;border-radius:8px;padding:5px 6px}
+.quick-info{min-width:0}
+.quick-info .itemname{font-size:14px;line-height:1.2}
+.quick-price{font-size:12px;color:#666;margin-top:2px}
+.quick-actions{display:flex;gap:4px}
+.quick-actions .btn{flex:0 0 auto}
+.quick-actions .small{min-width:58px}
 </style>
 </head>
 
 <body>
 <div class="app">
+
 <header class="header">
 <h1>💰 KEUANGAN PENGUSAHA</h1>
 <p>Catat pemasukan, pengeluaran dan saldo usaha</p>
@@ -21,6 +66,7 @@
 <div id="app"></div>
 
 <div class="footer">Keuangan Pengusaha</div>
+
 </div>
 
 <script>
@@ -30,8 +76,14 @@ const SUPABASE_PUBLISHABLE_KEY='sb_publishable_knCGieSffnDxLWPjjuNMcg_6OmMPgRb';
 let sb=null;
 
 try{
-  if(window.supabase&&typeof window.supabase.createClient==='function')
-    sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY)
+  if(
+    window.supabase &&
+    typeof window.supabase.createClient==='function'
+  )
+    sb=window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    )
 }catch(_){
   sb=null
 }
@@ -199,39 +251,54 @@ const C=[
 ];
 
 let S={
-  screen:'loading',
-  user:null,
-  p:null,
-  tx:[],
-  quick:[],
-  accounts:[],
-  current:0,
-  adding:false,
-  changing:false,
-  historyType:'pemasukan',
-  historyDate:'',
-  reg:{cat:'',biz:'',f1:'',f2:''},
-  loc:{lat:null,lng:null}
+screen:'loading',
+user:null,
+p:null,
+tx:[],
+quick:[],
+accounts:[],
+current:0,
+adding:false,
+changing:false,
+historyType:'pemasukan',
+historyDate:'',
+reg:{
+cat:'',
+biz:'',
+f1:'',
+f2:''
+},
+loc:{
+lat:null,
+lng:null
+}
 };
 
 const A=document.getElementById('app');
 
-const e=x=>String(x??'').replace(/[&<>\"']/g,m=>({
-  '&':'&amp;',
-  '<':'&lt;',
-  '>':'&gt;',
-  '\"':'&quot;',
-  "'":'&#039;'
-}[m]));
+const e=x=>String(x??'').replace(
+  /[&<>"']/g,
+  m=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#039;'
+  }[m])
+);
 
-const rup=x=>new Intl.NumberFormat('id-ID',{
-  style:'currency',
-  currency:'IDR',
-  maximumFractionDigits:0
-}).format(Number(x)||0);
+const rup=x=>new Intl.NumberFormat(
+  'id-ID',
+  {
+    style:'currency',
+    currency:'IDR',
+    maximumFractionDigits:0
+  }
+).format(Number(x)||0);
 
 function dateKey(x){
   let d=new Date(x);
+
   return [
     d.getFullYear(),
     String(d.getMonth()+1).padStart(2,'0'),
@@ -240,22 +307,38 @@ function dateKey(x){
 }
 
 function dateLabel(x){
-  return new Date(x).toLocaleDateString('id-ID',{
-    day:'2-digit',
-    month:'long',
-    year:'numeric'
-  })
-}
-
-function bal(){
-  let dasar=Number(S.p?.saldo_awal||0);
-  return dasar+S.tx.reduce(
-    (n,t)=>n+(t.jenis==='pemasukan'?Number(t.nominal):-Number(t.nominal)),
-    0
+  return new Date(x).toLocaleDateString(
+    'id-ID',
+    {
+      day:'2-digit',
+      month:'long',
+      year:'numeric'
+    }
   )
 }
 
+function bal(){
+  let dasar=Number(
+    S.p?.saldo_awal||0
+  );
+
+  return dasar+
+    S.tx.reduce(
+      (n,t)=>
+        n+
+        (
+          t.jenis==='pemasukan'
+          ?
+          Number(t.nominal)
+          :
+          -Number(t.nominal)
+        ),
+      0
+    )
+}
+
 function syncCurrent(){
+
   if(S.accounts.length)
     S.accounts[S.current]={
       ...S.accounts[S.current],
@@ -266,13 +349,22 @@ function syncCurrent(){
 }
 
 function loadCurrent(i){
+
   syncCurrent();
+
   S.current=i;
+
   let a=S.accounts[i];
 
   S.p=a.p;
-  S.tx=Array.isArray(a.tx)?a.tx:[];
-  S.quick=Array.isArray(a.quick)?a.quick:[];
+
+  S.tx=Array.isArray(a.tx)
+    ?a.tx
+    :[];
+
+  S.quick=Array.isArray(a.quick)
+    ?a.quick
+    :[];
 
   try{
     localStorage.setItem(
@@ -283,9 +375,11 @@ function loadCurrent(i){
 }
 
 function localSave(){
+
   syncCurrent();
 
   try{
+
     localStorage.setItem(
       'keuangan_pengusaha_accounts',
       JSON.stringify(S.accounts)
@@ -296,16 +390,25 @@ function localSave(){
         'keuangan_pengusaha_last_account',
         S.p.id
       );
+
   }catch(_){}
 }
 
 function localLoad(){
+
   try{
+
     let all=JSON.parse(
-      localStorage.getItem('keuangan_pengusaha_accounts')||'null'
+      localStorage.getItem(
+        'keuangan_pengusaha_accounts'
+      )||'null'
     );
 
-    if(Array.isArray(all)&&all.length){
+    if(
+      Array.isArray(all)&&
+      all.length
+    ){
+
       S.accounts=all;
 
       let last=localStorage.getItem(
@@ -316,18 +419,26 @@ function localLoad(){
         x=>String(x.p?.id)===String(last)
       );
 
-      loadCurrent(idx>=0?idx:0);
-      return true;
+      loadCurrent(
+        idx>=0
+        ?idx
+        :0
+      );
+
+      return true
     }
+
   }catch(_){}
 
   return false
 }
 
 async function getAuthUser(){
+
   if(!sb)return null;
 
   try{
+
     let q=await sb.auth.getSession();
 
     if(q.data?.session)
@@ -335,25 +446,35 @@ async function getAuthUser(){
 
     let a=await sb.auth.signInAnonymously();
 
-    if(a.error)throw a.error;
+    if(a.error)
+      throw a.error;
 
     return a.data.user
+
   }catch(_){
+
     return null
   }
 }
 
 async function cloudLoad(user){
-  if(!sb||!user)return false;
+
+  if(!sb||!user)
+    return false;
 
   try{
+
     let q=await sb
       .from('keuangan_accounts')
       .select('*')
       .eq('owner_id',user.id)
-      .order('created_at',{ascending:true});
+      .order(
+        'created_at',
+        {ascending:true}
+      );
 
-    if(q.error)return false;
+    if(q.error)
+      return false;
 
     let accounts=q.data||[];
     let out=[];
@@ -361,22 +482,32 @@ async function cloudLoad(user){
     for(const a of accounts){
 
       let [t,r]=await Promise.all([
+
         sb
           .from('keuangan_transactions')
           .select('*')
           .eq('account_id',a.id)
-          .order('created_at',{ascending:false}),
+          .order(
+            'created_at',
+            {ascending:false}
+          ),
 
         sb
           .from('keuangan_quick_items')
           .select('*')
           .eq('account_id',a.id)
-          .order('created_at',{ascending:true})
+          .order(
+            'created_at',
+            {ascending:true}
+          )
+
       ]);
 
-      if(t.error||r.error)return false;
+      if(t.error||r.error)
+        return false;
 
       out.push({
+
         p:{
           id:a.id,
           nama_kurir:a.nama,
@@ -391,23 +522,29 @@ async function cloudLoad(user){
           saldo:Number(a.saldo||0)
         },
 
-        tx:(t.data||[]).map(x=>({
-          id:x.id,
-          jenis:x.jenis,
-          keterangan:x.keterangan,
-          nominal:Number(x.nominal),
-          created_at:x.created_at
-        })),
+        tx:(t.data||[]).map(
+          x=>({
+            id:x.id,
+            jenis:x.jenis,
+            keterangan:x.keterangan,
+            nominal:Number(x.nominal),
+            created_at:x.created_at
+          })
+        ),
 
-        quick:(r.data||[]).map(x=>({
-          id:x.id,
-          name:x.name,
-          amount:Number(x.amount)
-        }))
+        quick:(r.data||[]).map(
+          x=>({
+            id:x.id,
+            name:x.name,
+            amount:Number(x.amount)
+          })
+        )
+
       })
     }
 
     if(out.length){
+
       S.accounts=out;
 
       let last=localStorage.getItem(
@@ -418,7 +555,12 @@ async function cloudLoad(user){
         x=>String(x.p.id)===String(last)
       );
 
-      loadCurrent(idx>=0?idx:out.length-1);
+      loadCurrent(
+        idx>=0
+        ?idx
+        :out.length-1
+      );
+
       localSave();
 
       return true
@@ -430,17 +572,21 @@ async function cloudLoad(user){
 }
 
 async function cloudAccountUpsert(){
+
   if(
     !sb||
     !S.user||
     !S.p||
     String(S.p.id).startsWith('local-')
-  )return false;
+  )
+    return false;
 
   try{
+
     let q=await sb
       .from('keuangan_accounts')
       .upsert({
+
         id:S.p.id,
         owner_id:S.user.id,
         nama:S.p.nama_kurir,
@@ -451,87 +597,110 @@ async function cloudAccountUpsert(){
         longitude:S.p.longitude,
         jenis_penghasilan:S.p.jenis_penghasilan,
         jenis_usaha:S.p.jenis_usaha,
-        saldo_awal:Number(S.p.saldo_awal||0),
+        saldo_awal:Number(
+          S.p.saldo_awal||0
+        ),
         saldo:Number(bal()),
         updated_at:new Date().toISOString()
+
       });
 
     return !q.error
 
   }catch(_){
+
     return false
   }
 }
 
 async function cloudTxInsert(t){
+
   if(
     !sb||
     !S.user||
     !S.p||
     String(S.p.id).startsWith('local-')
-  )return;
+  )
+    return;
 
   try{
+
     await sb
       .from('keuangan_transactions')
       .insert({
+
         account_id:S.p.id,
         owner_id:S.user.id,
         jenis:t.jenis,
         keterangan:t.keterangan,
         nominal:Number(t.nominal),
         created_at:t.created_at
+
       })
+
   }catch(_){}
 }
 
 async function cloudQuickInsert(q){
+
   if(
     !sb||
     !S.user||
     !S.p||
     String(S.p.id).startsWith('local-')
-  )return;
+  )
+    return;
 
   try{
+
     await sb
       .from('keuangan_quick_items')
       .insert({
+
         id:q.id,
         account_id:S.p.id,
         owner_id:S.user.id,
         name:q.name,
         amount:Number(q.amount)
+
       })
+
   }catch(_){}
 }
 
 async function cloudQuickDelete(id){
+
   if(
     !sb||
     !S.user||
     !S.p||
     String(S.p.id).startsWith('local-')
-  )return;
+  )
+    return;
 
   try{
+
     await sb
       .from('keuangan_quick_items')
       .delete()
       .eq('id',id)
       .eq('account_id',S.p.id)
+
   }catch(_){}
 }
 
 async function cloudTxDelete(id){
+
   if(
     !sb||
     !S.user||
     !S.p||
     String(S.p.id).startsWith('local-')
-  )return true;
+  )
+    return true;
 
   try{
+
     let q=await sb
       .from('keuangan_transactions')
       .delete()
@@ -541,41 +710,61 @@ async function cloudTxDelete(id){
     return !q.error
 
   }catch(_){
+
     return false
   }
 }
 
 
-/* =========================================================
-   PERBAIKAN UTAMA:
-   APLIKASI DITAMPILKAN TERLEBIH DAHULU.
-   SUPABASE TIDAK BOLEH MEMBUAT BAGIAN TENGAH KOSONG.
-   ========================================================= */
+/* =====================================================
+   PERBAIKAN PEMUATAN APLIKASI
+   ===================================================== */
 
 function withTimeout(promise,ms){
+
   return Promise.race([
-    Promise.resolve(promise).catch(()=>null),
-    new Promise(resolve=>
-      setTimeout(()=>resolve(null),ms)
+
+    Promise
+      .resolve(promise)
+      .catch(()=>null),
+
+    new Promise(
+      resolve=>
+        setTimeout(
+          ()=>resolve(null),
+          ms
+        )
     )
+
   ]);
 }
 
 async function init(){
 
-  // Ambil data lokal terlebih dahulu.
   const hasLocal=localLoad();
 
-  // LANGSUNG tampilkan halaman.
+  /*
+    TAMPILKAN APLIKASI TERLEBIH DAHULU.
+    Tidak menunggu Supabase.
+  */
+
   if(hasLocal){
+
     S.screen='dash';
     render();
+
   }else{
+
     S.screen='start';
     render();
+
   }
 
-  // Supabase berjalan setelah tampilan sudah muncul.
+  /*
+    Setelah tampilan sudah muncul,
+    baru coba Supabase.
+  */
+
   try{
 
     const user=await withTimeout(
@@ -583,9 +772,13 @@ async function init(){
       8000
     );
 
-    // Jika Supabase gagal/lambat,
-    // aplikasi tetap berjalan menggunakan data lokal.
-    if(!user)return;
+    /*
+      Supabase lambat/gagal tidak boleh
+      membuat halaman menjadi kosong.
+    */
+
+    if(!user)
+      return;
 
     S.user=user;
 
@@ -595,41 +788,74 @@ async function init(){
     );
 
     if(loaded){
+
       S.screen='dash';
       render();
+
     }
 
   }catch(_){
 
-    // Gangguan Supabase tidak boleh
-    // menghentikan aplikasi.
+    /*
+      Gangguan Supabase tidak menghentikan aplikasi.
+    */
+
   }
 }
 
 function render(){
 
-  if(S.screen==='start')start();
-  else if(S.screen==='cat')cats();
-  else if(S.screen==='biz')biz();
-  else if(S.screen==='reg')reg();
-  else if(S.screen==='dash')dash();
-  else if(S.screen==='in')income();
-  else if(S.screen==='out')expense();
-  else if(S.screen==='hin')history('pemasukan');
-  else if(S.screen==='hout')history('pengeluaran');
-  else if(S.screen==='hdetail')historyDetail();
-  else if(S.screen==='accounts')accounts();
-  else if(S.screen==='edit')edit();
+  if(S.screen==='start')
+    start();
+
+  else if(S.screen==='cat')
+    cats();
+
+  else if(S.screen==='biz')
+    biz();
+
+  else if(S.screen==='reg')
+    reg();
+
+  else if(S.screen==='dash')
+    dash();
+
+  else if(S.screen==='in')
+    income();
+
+  else if(S.screen==='out')
+    expense();
+
+  else if(S.screen==='hin')
+    history('pemasukan');
+
+  else if(S.screen==='hout')
+    history('pengeluaran');
+
+  else if(S.screen==='hdetail')
+    historyDetail();
+
+  else if(S.screen==='accounts')
+    accounts();
+
+  else if(S.screen==='edit')
+    edit();
+
   else
     A.innerHTML=
       '<main class="page"><div class="card empty">Memuat...</div></main>'
 }
 
 function start(){
+
   A.innerHTML=`
+
   <main class="page">
+
     <div class="card">
+
       <h2>JENIS PENGHASILAN</h2>
+
       <p class="muted">
         Pilih sumber/jenis usaha yang menjadi sumber pemasukan.
       </p>
@@ -637,22 +863,34 @@ function start(){
       <button
         class="btn"
         onclick="S.screen='cat';render()">
+
         JENIS USAHA
+
       </button>
+
     </div>
-  </main>`
+
+  </main>
+
+  `
 }
 
 function cats(){
+
   A.innerHTML=`
+
   <main class="page">
+
     <button
       class="back"
       onclick="S.screen='start';render()">
+
       ← Kembali
+
     </button>
 
     <div class="card">
+
       <h2>JENIS PENGHASILAN</h2>
 
       <p class="muted">
@@ -660,22 +898,40 @@ function cats(){
       </p>
 
       <div class="options">
-        ${C.map((x,i)=>`
-          <button
-            class="option"
-            onclick="pickCat(${i})">
-            ${i+1}. ${e(x[0])}
-          </button>
-        `).join('')}
+
+        ${
+          C.map(
+            (x,i)=>`
+
+              <button
+                class="option"
+                onclick="pickCat(${i})">
+
+                ${i+1}. ${e(x[0])}
+
+              </button>
+
+            `
+          ).join('')
+        }
+
       </div>
+
     </div>
-  </main>`
+
+  </main>
+
+  `
 }
 
 function pickCat(i){
+
   S.reg.cat=C[i][0];
+
   S.reg.biz='';
+
   S.screen='biz';
+
   render()
 }
 
@@ -686,12 +942,15 @@ function biz(){
   );
 
   A.innerHTML=`
+
   <main class="page">
 
     <button
       class="back"
       onclick="S.screen='cat';render()">
+
       ← Kembali
+
     </button>
 
     <div class="card">
@@ -704,19 +963,29 @@ function biz(){
 
       <div class="options">
 
-        ${c[1].map((b,i)=>`
-          <button
-            class="option"
-            onclick="pickBiz(${i})">
-            ${e(b[0])}
-          </button>
-        `).join('')}
+        ${
+          c[1].map(
+            (b,i)=>`
+
+              <button
+                class="option"
+                onclick="pickBiz(${i})">
+
+                ${e(b[0])}
+
+              </button>
+
+            `
+          ).join('')
+        }
 
       </div>
 
     </div>
 
-  </main>`
+  </main>
+
+  `
 }
 
 function pickBiz(i){
@@ -732,18 +1001,22 @@ function pickBiz(i){
   S.reg.f2=b[2];
 
   S.screen='reg';
+
   render()
 }
 
 function reg(){
 
   A.innerHTML=`
+
   <main class="page">
 
     <button
       class="back"
       onclick="S.screen='biz';render()">
+
       ← Kembali
+
     </button>
 
     <div class="card">
@@ -751,30 +1024,38 @@ function reg(){
       <h2>DAFTAR AKUN</h2>
 
       <div class="ok">
+
         <b>JENIS PENGHASILAN:</b>
         ${e(S.reg.cat)}
+
         <br>
+
         <b>JENIS USAHA:</b>
         ${e(S.reg.biz)}
+
       </div>
 
       <label>Nama</label>
+
       <input
         id="rn"
         placeholder="Masukkan nama">
 
       <label>Nama Usaha</label>
+
       <input
         id="ru"
         placeholder="Masukkan nama usaha">
 
       <label>Nomor Telepon</label>
+
       <input
         id="rt"
         type="tel"
         placeholder="Masukkan nomor telepon">
 
       <label>Alamat Lengkap</label>
+
       <input
         id="ra"
         placeholder="Masukkan alamat lengkap">
@@ -782,25 +1063,33 @@ function reg(){
       <button
         class="btn secondary"
         onclick="locate()">
+
         📍 BAGIKAN LOKASI
+
       </button>
 
       <div
         id="ls"
         class="muted"
         style="margin-top:7px">
+
         Lokasi belum dibagikan.
+
       </div>
 
       <button
         class="btn success"
         onclick="finish()">
+
         SELESAI
+
       </button>
 
     </div>
 
-  </main>`
+  </main>
+
+  `
 }
 
 function locate(){
@@ -808,8 +1097,10 @@ function locate(){
   let z=document.getElementById('ls');
 
   if(!navigator.geolocation){
+
     z.textContent=
       'Browser tidak mendukung lokasi.';
+
     return
   }
 
@@ -817,7 +1108,9 @@ function locate(){
     'Meminta izin lokasi...';
 
   navigator.geolocation.getCurrentPosition(
+
     p=>{
+
       S.loc={
         lat:p.coords.latitude,
         lng:p.coords.longitude
@@ -825,27 +1118,49 @@ function locate(){
 
       z.textContent=
         'Lokasi berhasil dibagikan.'
+
     },
+
     ()=>{
+
       z.textContent=
         'Lokasi belum berhasil dibagikan. Izinkan lokasi pada browser lalu coba lagi.'
+
     },
+
     {
       enableHighAccuracy:true,
       timeout:15000,
       maximumAge:0
     }
+
   )
 }
 
 async function finish(){
 
-  let n=document.getElementById('rn').value.trim();
-  let u=document.getElementById('ru').value.trim();
-  let t=document.getElementById('rt').value.trim();
-  let a=document.getElementById('ra').value.trim();
+  let n=document
+    .getElementById('rn')
+    .value
+    .trim();
+
+  let u=document
+    .getElementById('ru')
+    .value
+    .trim();
+
+  let t=document
+    .getElementById('rt')
+    .value
+    .trim();
+
+  let a=document
+    .getElementById('ra')
+    .value
+    .trim();
 
   if(!n||!u||!t||!a)
+
     return alert(
       'Lengkapi semua data pendaftaran.'
     );
@@ -863,8 +1178,10 @@ async function finish(){
       nama_usaha:u,
       nomor_whatsapp:t,
       alamat_lengkap:a,
-      latitude:S.loc.lat??old.latitude,
-      longitude:S.loc.lng??old.longitude,
+      latitude:
+        S.loc.lat??old.latitude,
+      longitude:
+        S.loc.lng??old.longitude,
       jenis_penghasilan:S.reg.cat,
       jenis_usaha:S.reg.biz
     };
@@ -874,14 +1191,19 @@ async function finish(){
         z+
         (
           x.jenis==='pemasukan'
-          ?Number(x.nominal)
-          :-Number(x.nominal)
+          ?
+          Number(x.nominal)
+          :
+          -Number(x.nominal)
         ),
       0
     );
 
-    S.p.saldo_awal=oldSaldo-net;
-    S.p.saldo=oldSaldo;
+    S.p.saldo_awal=
+      oldSaldo-net;
+
+    S.p.saldo=
+      oldSaldo;
 
     S.accounts[S.current]={
       p:S.p,
@@ -894,13 +1216,16 @@ async function finish(){
     await cloudAccountUpsert();
 
     S.changing=false;
+
     S.screen='dash';
+
     render();
 
     return
   }
 
-  let id='local-'+crypto.randomUUID();
+  let id=
+    'local-'+crypto.randomUUID();
 
   let p={
     id,
@@ -917,15 +1242,15 @@ async function finish(){
   };
 
   /*
-    PERBAIKAN:
-    getAuthUser diberi timeout supaya
-    tombol SELESAI tidak menunggu Supabase selamanya.
+    Supabase diberi batas waktu.
   */
+
   if(!S.user)
-    S.user=await withTimeout(
-      getAuthUser(),
-      8000
-    );
+    S.user=
+      await withTimeout(
+        getAuthUser(),
+        8000
+      );
 
   S.accounts.push({
     p,
@@ -941,26 +1266,32 @@ async function finish(){
 
   if(S.user&&sb){
 
-    let realId=crypto.randomUUID();
+    let realId=
+      crypto.randomUUID();
 
     p.id=realId;
 
     S.accounts[S.current].p=p;
+
     S.p=p;
 
     localSave();
 
     await cloudAccountUpsert();
+
   }
 
   S.adding=false;
+
   S.screen='dash';
+
   render()
 }
 
 function dash(){
 
   A.innerHTML=`
+
   <main class="page">
 
     <div class="card">
@@ -974,9 +1305,11 @@ function dash(){
       </div>
 
       <div class="muted">
+
         ${e(S.p.jenis_penghasilan)}
         —
         ${e(S.p.jenis_usaha)}
+
       </div>
 
     </div>
@@ -994,19 +1327,25 @@ function dash(){
       <button
         class="btn success"
         onclick="S.screen='in';render()">
+
         PEMASUKAN
+
       </button>
 
       <button
         class="btn danger"
         onclick="S.screen='out';render()">
+
         PENGELUARAN
+
       </button>
 
       <button
         class="btn secondary"
         onclick="S.screen='edit';render()">
+
         EDIT AKUN
+
       </button>
 
     </div>
@@ -1016,34 +1355,52 @@ function dash(){
       <button
         class="btn"
         onclick="addBusiness()">
+
         TAMBAH AKUN
+
       </button>
 
       <button
         class="btn light"
         onclick="S.screen='accounts';render()">
+
         DAFTAR AKUN
+
       </button>
 
     </div>
 
-  </main>`
+  </main>
+
+  `
 }
 
 function income(){
 
-  let info=
-    C.find(x=>x[0]===S.p.jenis_penghasilan)
-    ?.[1]
-    .find(x=>x[0]===S.p.jenis_usaha);
+  /*
+    PERBAIKAN:
+    Tidak lagi menggunakan penulisan
+    optional chaining yang sebelumnya
+    bermasalah pada bagian ini.
+  */
 
-  let f1=
-    info?.[1]||
-    'Jenis Produk/Jasa';
+  let catInfo=C.find(
+    x=>x[0]===S.p.jenis_penghasilan
+  );
 
-  let f2=
-    info?.[2]||
-    'Harga';
+  let info=catInfo
+    ?catInfo[1].find(
+      x=>x[0]===S.p.jenis_usaha
+    )
+    :null;
+
+  let f1=info
+    ?info[1]
+    :'Jenis Produk/Jasa';
+
+  let f2=info
+    ?info[2]
+    :'Harga';
 
   A.innerHTML=`
 
@@ -1052,7 +1409,9 @@ function income(){
     <button
       class="back"
       onclick="S.screen='dash';render()">
+
       ← Menu Utama
+
     </button>
 
     <div class="card">
@@ -1060,8 +1419,10 @@ function income(){
       <h2>PEMASUKAN</h2>
 
       <div class="notice">
+
         Usaha:
         <b>${e(S.p.jenis_usaha)}</b>
+
       </div>
 
       <label>${e(f1)}</label>
@@ -1082,13 +1443,17 @@ function income(){
       <button
         class="btn success"
         onclick="addIn()">
+
         TAMBAH PEMASUKAN
+
       </button>
 
       <button
         class="btn light"
         onclick="S.screen='hin';render()">
+
         RIWAYAT PEMASUKAN
+
       </button>
 
     </div>
@@ -1098,7 +1463,10 @@ function income(){
       <h3>PEMASUKAN CEPAT</h3>
 
       <p class="muted">
-        Pilih CATAT pada pemasukan yang ingin dimasukkan ke riwayat.
+
+        Pilih CATAT pada pemasukan
+        yang ingin dimasukkan ke riwayat.
+
       </p>
 
       <div class="row">
@@ -1119,58 +1487,73 @@ function income(){
       <button
         class="btn"
         onclick="addQuick()">
+
         TAMBAH PEMASUKAN CEPAT
+
       </button>
 
       <div class="quick-list">
 
         ${
           S.quick.length
+
           ?
-          S.quick.map((x,i)=>`
 
-            <div class="quick-item">
+          S.quick.map(
+            (x,i)=>`
 
-              <div class="quick-info">
+              <div class="quick-item">
 
-                <div class="itemname">
-                  ${e(x.name)}
+                <div class="quick-info">
+
+                  <div class="itemname">
+                    ${e(x.name)}
+                  </div>
+
+                  <div class="quick-price">
+                    ${rup(x.amount)}
+                  </div>
+
                 </div>
 
-                <div class="quick-price">
-                  ${rup(x.amount)}
+                <div class="quick-actions">
+
+                  <button
+                    class="btn small success"
+                    onclick="quickRecord(${i})">
+
+                    CATAT
+
+                  </button>
+
+                  <button
+                    class="btn small danger"
+                    onclick="quickDelete(${i})">
+
+                    HAPUS
+
+                  </button>
+
                 </div>
 
               </div>
 
-              <div class="quick-actions">
+            `
+          ).join('')
 
-                <button
-                  class="btn small success"
-                  onclick="quickRecord(${i})">
-                  CATAT
-                </button>
-
-                <button
-                  class="btn small danger"
-                  onclick="quickDelete(${i})">
-                  HAPUS
-                </button>
-
-              </div>
-
-            </div>
-
-          `).join('')
           :
+
           '<div class="empty">Belum ada pemasukan cepat.</div>'
+
         }
 
       </div>
 
     </div>
 
-  </main>`
+  </main>
+
+  `
 }
 
 async function addIn(){
@@ -1185,6 +1568,7 @@ async function addIn(){
   );
 
   if(!n||!a||a<=0)
+
     return alert(
       'Isi pemasukan dan nominal dengan benar.'
     );
@@ -1214,6 +1598,7 @@ async function addQuick(){
   );
 
   if(!n||!a||a<=0)
+
     return alert(
       'Isi nama dan harga dengan benar.'
     );
@@ -1258,9 +1643,11 @@ async function quickDelete(i){
 
   if(!x)return;
 
-  if(confirm(
-    'Hapus pemasukan cepat ini?'
-  )){
+  if(
+    confirm(
+      'Hapus pemasukan cepat ini?'
+    )
+  ){
 
     S.quick.splice(i,1);
 
@@ -1281,7 +1668,9 @@ function expense(){
     <button
       class="back"
       onclick="S.screen='dash';render()">
+
       ← Menu Utama
+
     </button>
 
     <div class="card">
@@ -1306,18 +1695,24 @@ function expense(){
       <button
         class="btn danger"
         onclick="addOut()">
+
         TAMBAH PENGELUARAN
+
       </button>
 
       <button
         class="btn light"
         onclick="S.screen='hout';render()">
+
         RIWAYAT PENGELUARAN
+
       </button>
 
     </div>
 
-  </main>`
+  </main>
+
+  `
 }
 
 async function addOut(){
@@ -1332,6 +1727,7 @@ async function addOut(){
   );
 
   if(!n||!a||a<=0)
+
     return alert(
       'Isi belanjaan dan nominal dengan benar.'
     );
@@ -1379,37 +1775,46 @@ function history(type){
   let groups={};
 
   arr.forEach(t=>{
+
     let k=dateKey(t.created_at);
 
     (groups[k]??=[]).push(t)
+
   });
 
   let rows=
     Object.entries(groups)
-    .sort((a,b)=>b[0].localeCompare(a[0]))
-    .map(([k,v])=>{
+    .sort(
+      (a,b)=>b[0].localeCompare(a[0])
+    )
+    .map(
+      ([k,v])=>{
 
-      let total=v.reduce(
-        (n,t)=>n+Number(t.nominal),
-        0
-      );
+        let total=v.reduce(
+          (n,t)=>n+Number(t.nominal),
+          0
+        );
 
-      return `
-      <button
-        class="option"
-        style="margin-bottom:5px;display:flex;justify-content:space-between;align-items:center"
-        onclick="openHistoryDate('${type}','${k}')">
+        return `
 
-        <span>
-          ${dateLabel(v[0].created_at)}
-        </span>
+        <button
+          class="option"
+          style="margin-bottom:5px;display:flex;justify-content:space-between;align-items:center"
+          onclick="openHistoryDate('${type}','${k}')">
 
-        <b>
-          ${rup(total)} ›
-        </b>
+          <span>
+            ${dateLabel(v[0].created_at)}
+          </span>
 
-      </button>`
-    })
+          <b>
+            ${rup(total)} ›
+          </b>
+
+        </button>
+
+        `
+      }
+    )
     .join('');
 
   A.innerHTML=`
@@ -1419,12 +1824,15 @@ function history(type){
     <button
       class="back"
       onclick="S.screen='${type==='pemasukan'?'in':'out'}';render()">
+
       ← Kembali
+
     </button>
 
     <div class="card">
 
       <h2>
+
         ${
           type==='pemasukan'
           ?
@@ -1432,6 +1840,7 @@ function history(type){
           :
           'RIWAYAT PENGELUARAN'
         }
+
       </h2>
 
       ${
@@ -1441,12 +1850,15 @@ function history(type){
 
     </div>
 
-  </main>`
+  </main>
+
+  `
 }
 
 function openHistoryDate(type,key){
 
   S.historyType=type;
+
   S.historyDate=key;
 
   S.screen='hdetail';
@@ -1484,12 +1896,15 @@ function historyDetail(){
     <button
       class="back"
       onclick="S.screen='${type==='pemasukan'?'hin':'hout'}';render()">
+
       ← Daftar Tanggal
+
     </button>
 
     <div class="card">
 
       <h2>
+
         ${
           type==='pemasukan'
           ?
@@ -1497,49 +1912,56 @@ function historyDetail(){
           :
           'PENGELUARAN'
         }
+
       </h2>
 
       <div class="notice">
+
         ${label}
+
       </div>
 
       ${
-        arr.map(t=>`
+        arr.map(
+          t=>`
 
-          <div class="history">
+            <div class="history">
 
-            <div class="historytop">
+              <div class="historytop">
 
-              <div class="itemname">
-                ${e(t.keterangan)}
+                <div class="itemname">
+                  ${e(t.keterangan)}
+                </div>
+
+                <div
+                  class="${type==='pemasukan'?'in':'out'}">
+
+                  ${
+                    type==='pemasukan'
+                    ?
+                    '+'
+                    :
+                    '-'
+                  }
+
+                  ${rup(t.nominal)}
+
+                </div>
+
               </div>
 
-              <div
-                class="${type==='pemasukan'?'in':'out'}">
+              <button
+                class="btn small danger"
+                onclick="delTx('${e(t.id)}')">
 
-                ${
-                  type==='pemasukan'
-                  ?
-                  '+'
-                  :
-                  '-'
-                }
+                HAPUS
 
-                ${rup(t.nominal)}
-
-              </div>
+              </button>
 
             </div>
 
-            <button
-              class="btn small danger"
-              onclick="delTx('${e(t.id)}')">
-              HAPUS
-            </button>
-
-          </div>
-
-        `).join('')
+          `
+        ).join('')
       }
 
       <div
@@ -1547,6 +1969,7 @@ function historyDetail(){
         style="padding:10px 0">
 
         <small>
+
           Total
           ${
             type==='pemasukan'
@@ -1555,6 +1978,7 @@ function historyDetail(){
             :
             'Pengeluaran'
           }
+
         </small>
 
         ${rup(total)}
@@ -1563,7 +1987,9 @@ function historyDetail(){
 
     </div>
 
-  </main>`
+  </main>
+
+  `
 }
 
 async function delTx(id){
@@ -1577,9 +2003,11 @@ async function delTx(id){
     !confirm(
       'Hapus transaksi ini? Saldo akan disesuaikan.'
     )
-  )return;
+  )
+    return;
 
   if(!(await cloudTxDelete(t.id)))
+
     return alert(
       'Transaksi tidak dapat dihapus dari database.'
     );
@@ -1608,7 +2036,9 @@ function accounts(){
     <button
       class="back"
       onclick="S.screen='dash';render()">
+
       ← Menu Utama
+
     </button>
 
     <div class="card">
@@ -1620,51 +2050,56 @@ function accounts(){
       </p>
 
       ${
-        S.accounts.map((a,i)=>{
+        S.accounts.map(
+          (a,i)=>{
 
-          let tx=a.tx||[];
+            let tx=a.tx||[];
 
-          let saldo=
-            Number(a.p.saldo_awal||0)+
-            tx.reduce(
-              (n,t)=>
-                n+
-                (
-                  t.jenis==='pemasukan'
-                  ?
-                  Number(t.nominal)
-                  :
-                  -Number(t.nominal)
-                ),
-              0
-            );
+            let saldo=
+              Number(a.p.saldo_awal||0)+
+              tx.reduce(
+                (n,t)=>
+                  n+
+                  (
+                    t.jenis==='pemasukan'
+                    ?
+                    Number(t.nominal)
+                    :
+                    -Number(t.nominal)
+                  ),
+                0
+              );
 
-          return `
-          <button
-            class="option"
-            style="margin-bottom:5px"
-            onclick="switchAccount(${i})">
+            return `
 
-            <b>
-              ${e(a.p.nama_usaha)}
-            </b>
+            <button
+              class="option"
+              style="margin-bottom:5px"
+              onclick="switchAccount(${i})">
 
-            <br>
+              <b>
+                ${e(a.p.nama_usaha)}
+              </b>
 
-            <span class="muted">
+              <br>
 
-              ${e(a.p.jenis_penghasilan)}
-              —
-              ${e(a.p.jenis_usaha)}
+              <span class="muted">
 
-              ·
+                ${e(a.p.jenis_penghasilan)}
+                —
+                ${e(a.p.jenis_usaha)}
 
-              ${rup(saldo)}
+                ·
 
-            </span>
+                ${rup(saldo)}
 
-          </button>`
-        }).join('')
+              </span>
+
+            </button>
+
+            `
+          }
+        ).join('')
       }
 
     </div>
@@ -1672,10 +2107,14 @@ function accounts(){
     <button
       class="btn"
       onclick="addBusiness()">
+
       + TAMBAH AKUN
+
     </button>
 
-  </main>`
+  </main>
+
+  `
 }
 
 function edit(){
@@ -1687,7 +2126,9 @@ function edit(){
     <button
       class="back"
       onclick="S.screen='dash';render()">
+
       ← Menu Utama
+
     </button>
 
     <div class="card">
@@ -1742,18 +2183,24 @@ function edit(){
       <button
         class="btn light"
         onclick="changeBusiness()">
+
         UBAH JENIS PENGHASILAN / JENIS USAHA
+
       </button>
 
       <button
         class="btn success"
         onclick="saveEdit()">
+
         SIMPAN PERUBAHAN
+
       </button>
 
     </div>
 
-  </main>`
+  </main>
+
+  `
 }
 
 async function saveEdit(){
@@ -1790,6 +2237,7 @@ async function saveEdit(){
     Number.isNaN(ns)||
     ns<0
   )
+
     return alert(
       'Semua data harus diisi dengan benar.'
     );
@@ -1837,7 +2285,8 @@ function switchAccount(i){
   if(
     i<0||
     i>=S.accounts.length
-  )return;
+  )
+    return;
 
   loadCurrent(i);
 
@@ -1851,6 +2300,7 @@ function switchAccount(i){
 function addBusiness(){
 
   S.adding=true;
+
   S.changing=false;
 
   S.reg={
@@ -1873,6 +2323,7 @@ function addBusiness(){
 function changeBusiness(){
 
   S.adding=false;
+
   S.changing=true;
 
   S.reg={
@@ -1887,10 +2338,17 @@ function changeBusiness(){
   render()
 }
 
-window.addEventListener(
-  'load',
-  init
-);
+
+/*
+  PERBAIKAN PENTING:
+  Jangan menunggu window "load".
+
+  init() dijalankan langsung karena
+  script ini sudah berada di bagian bawah body.
+*/
+
+init();
+
 </script>
 </body>
   </html>
